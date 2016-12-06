@@ -91,30 +91,10 @@ By : University Of Mississippi Medical Center
   <val> NominalConductance * Multiplier </val>
 </def>
 
-
-
-
-<def><name> SympEffect </name><val> SympEffect [ RightKidney-AlphaReceptors.Activity ] </val></def>
-
-
-
--------------------------
-
-
-<def><name> TGFEffect </name><val> ( LeftKidney-AfferentArtery.TGF_A * ( RightTGF-Vascular.Signal ^ LeftKidney-AfferentArtery.TGF_m ) / ( ( RightTGF-Vascular.Signal ^ LeftKidney-AfferentArtery.TGF_m ) + ( LeftKidney-AfferentArtery.TGF_S ^ LeftKidney-AfferentArtery.TGF_m ) ) ) + LeftKidney-AfferentArtery.TGF_B  </val></def>
-
-<def><name> TGFEffect </name><val> TGFEffect [ RightTGF-Vascular.Signal ] </val></def>
-
-
-<def><name> SympEffect </name><val> ( LeftKidney-AfferentArtery.Symp_A * ( RightKidney-AlphaReceptors.Activity ^ LeftKidney-AfferentArtery.Symp_m ) / ( ( RightKidney-AlphaReceptors.Activity ^ LeftKidney-AfferentArtery.Symp_m ) + ( LeftKidney-AfferentArtery.Symp_S ^ LeftKidney-AfferentArtery.Symp_m ) ) ) + LeftKidney-AfferentArtery.Symp_B  </val></def>
-<!--
-<def><name> MyogenicEffect </name><val> ( LeftKidney-AfferentArtery.Myo_A * ( ( RightKidney-MyogenicDelay.PressureChange + 20 ) ^ LeftKidney-AfferentArtery.Myo_m ) / ( ( ( RightKidney-MyogenicDelay.PressureChange + 20 ) ^ LeftKidney-AfferentArtery.Myo_m ) + ( LeftKidney-AfferentArtery.Myo_S ^ LeftKidney-AfferentArtery.Myo_m ) ) ) + LeftKidney-AfferentArtery.Myo_B  </val></def>
--->
-<def><name> MyogenicEffect </name><val> MyogenicEffect [ RightKidney-MyogenicDelay.PressureChange ] </val></def>
-
-<def><name> ANPEffect </name><val> ANPEffect [ ANPPool.[ANP] ] </val></def>
-
-
+<def><name> ANPEffect </name><val> LeftKidney-AfferentArtery.ANP_A * ( ANPPool.[ANP]  ^ LeftKidney-AfferentArtery.ANP_m ) / (  ( ANPPool.[ANP]  ^ LeftKidney-AfferentArtery.ANP_m ) +  ( LeftKidney-AfferentArtery.ANP_S  ^ LeftKidney-AfferentArtery.ANP_m ) ) + ( LeftKidney-AfferentArtery.ANP_c * ANPPool.[ANP] ) + LeftKidney-AfferentArtery.ANP_B   </val></def>
+<def><name> TGFEffect </name><val> ( LeftKidney-AfferentArtery.TGF_A * ( ( RightTGF-Vascular.Signal ^ LeftKidney-AfferentArtery.TGF_m ) / ( ( RightTGF-Vascular.Signal ^ LeftKidney-AfferentArtery.TGF_m ) + ( LeftKidney-AfferentArtery.TGF_S ^ LeftKidney-AfferentArtery.TGF_m ) ) ) ) + LeftKidney-AfferentArtery.TGF_B + ( LeftKidney-AfferentArtery.TGF_c * RightTGF-Vascular.Signal ) </val></def>
+<def><name> SympEffect </name><val> ( LeftKidney-AfferentArtery.Symp_A * ( ( RightKidney-AlphaReceptors.Activity ^ LeftKidney-AfferentArtery.Symp_m ) / ( ( RightKidney-AlphaReceptors.Activity ^ LeftKidney-AfferentArtery.Symp_m ) + ( LeftKidney-AfferentArtery.Symp_S ^ LeftKidney-AfferentArtery.Symp_m ) ) ) ) + LeftKidney-AfferentArtery.Symp_B  </val></def>
+<def><name> MyogenicEffect </name><val> LeftKidney-AfferentArtery.Myo_A * ( EXP ( LeftKidney-AfferentArtery.Myo_m * RightKidney-MyogenicDelay.PressureChange ) ) / ( 1 + EXP ( LeftKidney-AfferentArtery.Myo_m * RightKidney-MyogenicDelay.PressureChange )  ) + LeftKidney-AfferentArtery.Myo_B  </val></def>
 
 <conditional><name> Conductance </name>
 <test> Clamp </test>

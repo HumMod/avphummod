@@ -29,15 +29,23 @@ By : University Of Mississippi Medical Center
 <var><name> BloodFlow </name></var>
 <var><name> Resistance </name></var>
 
-<parm><name> TGF_ATarget </name><val> 0.8 </val></parm>1.1
-<parm><name> TGF_mTarget </name><val> -3.2 </val></parm>-2.6
-<parm><name> TGF_STarget </name><val> 1.9 </val></parm>1.8
-<parm><name> TGF_BTarget </name><val> 0.385 </val></parm>.1
+<parm><name> TGF_ATarget </name><val> 0.9 </val></parm>1.1
+<parm><name> TGF_mTarget </name><val> -3 </val></parm>-2.6
+<parm><name> TGF_STarget </name><val> 1.7 </val></parm>1.8
+<parm><name> TGF_BTarget </name><val> 0.3 </val></parm>.1
+<parm><name> TGF_CTarget </name><val> -0.05 </val></parm>.1
 
-<parm><name> Symp_ATarget </name><val> 1.1 </val></parm>
+<parm><name> Symp_ATarget </name><val> 0.9 </val></parm>
 <parm><name> Symp_mTarget </name><val> -3 </val></parm>
-<parm><name> Symp_STarget </name><val> 1.85 </val></parm>
-<parm><name> Symp_BTarget </name><val> 0.1 </val></parm>
+<parm><name> Symp_STarget </name><val> 1.7 </val></parm>
+<parm><name> Symp_BTarget </name><val> 0.3 </val></parm>
+<parm><name> Symp_cTarget </name><val> -0.05 </val></parm>
+
+<parm><name> ANP_A </name><val> 2.1 </val></parm>
+<parm><name> ANP_m </name><val> 3 </val></parm>
+<parm><name> ANP_S </name><val> 150 </val></parm>
+<parm><name> ANP_B </name><val> 0.9 </val></parm>
+<parm><name> ANP_c </name><val> 0.005 </val></parm>
 
 <parm><name> Myo_ATarget </name><val> 0.48 </val></parm>
 <parm><name> Myo_mTarget </name><val> -2.8 </val></parm>
@@ -82,13 +90,21 @@ By : University Of Mississippi Medical Center
   <errorlim> 0.005 </errorlim>
 </diffeq>
 
+<diffeq>
+  <name> TGF_c </name>
+  <integralname> TGF_c </integralname>
+  <initialval> 0.385 </initialval>
+  <dervname> dTGFC </dervname>
+  <errorlim> 0.005 </errorlim>
+</diffeq>
+
 --------------------------------------
 
 
 <diffeq>
   <name> Symp_A </name>
   <integralname> Symp_A </integralname>
-  <initialval> 1.1 </initialval>
+  <initialval> 0.9 </initialval>
   <dervname> dSympA </dervname>
   <errorlim> 0.05 </errorlim>
 </diffeq>
@@ -104,7 +120,7 @@ By : University Of Mississippi Medical Center
 <diffeq>
   <name> Symp_S </name>
   <integralname> Symp_S </integralname>
-  <initialval> 1.85 </initialval>
+  <initialval> 1.7 </initialval>
   <dervname> dSympS </dervname>
   <errorlim> 0.05 </errorlim>
 </diffeq>
@@ -112,8 +128,16 @@ By : University Of Mississippi Medical Center
 <diffeq>
   <name> Symp_B </name>
   <integralname> Symp_B </integralname>
-  <initialval> 0.1 </initialval>
+  <initialval> 0.3 </initialval>
   <dervname> dSympB </dervname>
+  <errorlim> 0.005 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Symp_c </name>
+  <integralname> Symp_c </integralname>
+  <initialval> -0.05 </initialval>
+  <dervname> dSympC </dervname>
   <errorlim> 0.005 </errorlim>
 </diffeq>
 
@@ -221,37 +245,24 @@ By : University Of Mississippi Medical Center
 <def><name> dTGFm </name><val> 0.05 * ( TGF_mTarget - TGF_m ) </val></def>
 <def><name> dTGFS </name><val> 0.05 * ( TGF_STarget - TGF_S ) </val></def>
 <def><name> dTGFB </name><val> 0.05 * ( TGF_BTarget - TGF_B ) </val></def>
+<def><name> dTGFC </name><val> 0.05 * ( TGF_CTarget - TGF_c ) </val></def>
 
 <def><name> dSympA </name><val> 0.05 * ( Symp_ATarget - Symp_A ) </val></def>
 <def><name> dSympm </name><val> 0.05 * ( Symp_mTarget - Symp_m ) </val></def>
 <def><name> dSympS </name><val> 0.05 * ( Symp_STarget - Symp_S ) </val></def>
 <def><name> dSympB </name><val> 0.05 * ( Symp_BTarget - Symp_B ) </val></def>
+<def><name> dSympC </name><val> 0.05 * ( Symp_cTarget - Symp_c ) </val></def>
 
 <def><name> dMyoA </name><val> 0.05 * ( Myo_ATarget - Myo_A ) </val></def>
 <def><name> dMyom </name><val> 0.05 * ( Myo_mTarget - Myo_m ) </val></def>
 <def><name> dMyoS </name><val> 0.05 * ( Myo_STarget - Myo_S ) </val></def>
 <def><name> dMyoB </name><val> 0.05 * ( Myo_BTarget - Myo_B ) </val></def>
 
-
-
-
-<def><name> SympEffect </name><val> SympEffect [ LeftKidney-AlphaReceptors.Activity ] </val></def>
-
-----------------------------
-
-
-<!--
-<def><name> TGFEffect </name><val> ( TGF_A * ( ( LeftTGF-Vascular.Signal ^ TGF_m ) / ( ( LeftTGF-Vascular.Signal ^ TGF_m ) + ( TGF_S ^ TGF_m ) ) ) ) + TGF_B  </val></def>
--->
-<def><name> TGFEffect </name><val> TGFEffect [ LeftTGF-Vascular.Signal ] </val></def>
-
+<def><name> ANPEffect </name><val> ANP_A * ( ANPPool.[ANP]  ^ ANP_m ) / (  ( ANPPool.[ANP]  ^ ANP_m ) +  ( ANP_S  ^ ANP_m ) ) + ( ANP_c * ANPPool.[ANP] ) + ANP_B   </val></def>
+<def><name> TGFEffect </name><val> ( TGF_A * ( ( LeftTGF-Vascular.Signal ^ TGF_m ) / ( ( LeftTGF-Vascular.Signal ^ TGF_m ) + ( TGF_S ^ TGF_m ) ) ) ) + TGF_B + ( TGF_c * LeftTGF-Vascular.Signal ) </val></def>
 <def><name> SympEffect </name><val> ( Symp_A * ( ( LeftKidney-AlphaReceptors.Activity ^ Symp_m ) / ( ( LeftKidney-AlphaReceptors.Activity ^ Symp_m ) + ( Symp_S ^ Symp_m ) ) ) ) + Symp_B  </val></def>
-<!--
-<def><name> MyogenicEffect </name><val> ( Myo_A * ( ( ( LeftKidney-MyogenicDelay.PressureChange + 20 ) ^ Myo_m ) / ( ( ( LeftKidney-MyogenicDelay.PressureChange + 20 ) ^ Myo_m ) + ( Myo_S ^ Myo_m ) ) ) ) + Myo_B  </val></def>
--->
-<def><name> MyogenicEffect </name><val> MyogenicEffect [ LeftKidney-MyogenicDelay.PressureChange ] </val></def>
+<def><name> MyogenicEffect </name><val> Myo_A * ( EXP ( Myo_m * LeftKidney-MyogenicDelay.PressureChange ) ) / ( 1 + EXP ( Myo_m * LeftKidney-MyogenicDelay.PressureChange )  ) + Myo_B  </val></def>
 
-<def><name> ANPEffect </name><val> ANPEffect [ ANPPool.[ANP] ] </val></def>
 
 
 <conditional><name> Conductance </name>

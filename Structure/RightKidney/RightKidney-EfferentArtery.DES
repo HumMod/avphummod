@@ -73,20 +73,8 @@ By : University Of Mississippi Medical Center
 </def>
 
 
-
-
-
-<def><name> A2Effect </name><val> ( LeftKidney-EfferentArtery.A2_A * ( A2Pool.Log10Conc ^ LeftKidney-EfferentArtery.A2_m ) / ( ( A2Pool.Log10Conc ^ LeftKidney-EfferentArtery.A2_m ) + ( LeftKidney-EfferentArtery.A2_S ^ LeftKidney-EfferentArtery.A2_m ) ) ) + LeftKidney-EfferentArtery.A2_B  </val></def>
-
-<def><name> SympEffect </name><val> ( LeftKidney-EfferentArtery.Symp_A * ( RightKidney-AlphaReceptors.Activity ^ LeftKidney-EfferentArtery.Symp_m ) / ( ( RightKidney-AlphaReceptors.Activity ^ LeftKidney-EfferentArtery.Symp_m ) + ( LeftKidney-EfferentArtery.Symp_S ^ LeftKidney-EfferentArtery.Symp_m ) ) ) + LeftKidney-EfferentArtery.Symp_B  </val></def>
-
-
-
-<def><name> A2Effect </name><val> A2Effect [ A2Pool.Log10Conc ] </val></def>
-
-<def><name> SympEffect </name><val> SympEffect [ RightKidney-AlphaReceptors.Activity ] </val></def>
-
-
+<def><name> A2Effect </name><val> ( LeftKidney-EfferentArtery.A2_A * ( A2Pool.Log10Conc ^ LeftKidney-EfferentArtery.A2_m ) / ( ( A2Pool.Log10Conc ^ LeftKidney-EfferentArtery.A2_m ) + ( LeftKidney-EfferentArtery.A2_S ^ LeftKidney-EfferentArtery.A2_m ) ) ) + LeftKidney-EfferentArtery.A2_B +  ( LeftKidney-EfferentArtery.A2_C *  A2Pool.Log10Conc )   </val></def>
+<def><name> SympEffect </name><val> ( LeftKidney-EfferentArtery.Symp_A * ( RightKidney-AlphaReceptors.Activity ^ LeftKidney-EfferentArtery.Symp_m ) / ( ( RightKidney-AlphaReceptors.Activity ^ LeftKidney-EfferentArtery.Symp_m ) + ( LeftKidney-EfferentArtery.Symp_S ^ LeftKidney-EfferentArtery.Symp_m ) ) ) + LeftKidney-EfferentArtery.Symp_B + (  LeftKidney-EfferentArtery.Symp_C * LeftKidney-AlphaReceptors.Activity ) </val></def>
 
 <conditional><name> Conductance </name>
 <test> Clamp </test>

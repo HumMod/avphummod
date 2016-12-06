@@ -31,15 +31,17 @@ By : University Of Mississippi Medical Center
 <var><name> VasaRectaInflow </name></var>
 <var><name> VasaRectaOutflow </name></var>
 
-<parm><name> A2_ATarget </name><val> 0.72 </val></parm>
-<parm><name> A2_mTarget </name><val> -3.5 </val></parm>
-<parm><name> A2_STarget </name><val> 1.75 </val></parm>
-<parm><name> A2_BTarget </name><val> 0.48 </val></parm>
+<parm><name> A2_ATarget </name><val> 1.2 </val></parm>
+<parm><name> A2_mTarget </name><val> -4.5 </val></parm>
+<parm><name> A2_STarget </name><val> 1.15 </val></parm>
+<parm><name> A2_BTarget </name><val> 0.3 </val></parm>
+<parm><name> A2_CTarget </name><val> -0.075 </val></parm>
 
-<parm><name> Symp_ATarget </name><val> 1.1 </val></parm>
+<parm><name> Symp_ATarget </name><val> 0.9 </val></parm>
 <parm><name> Symp_mTarget </name><val> -3 </val></parm>
-<parm><name> Symp_STarget </name><val> 1.85 </val></parm>
-<parm><name> Symp_BTarget </name><val> 0.1 </val></parm>
+<parm><name> Symp_STarget </name><val> 1.7 </val></parm>
+<parm><name> Symp_BTarget </name><val> 0.3 </val></parm>
+<parm><name> Symp_CTarget </name><val> -0.05 </val></parm>
 
 </variables>
 
@@ -48,15 +50,15 @@ By : University Of Mississippi Medical Center
 <diffeq>
   <name> A2_A </name>
   <integralname> A2_A </integralname>
-  <initialval> 0.72 </initialval>
-  <dervname> dA2A </dervname>
+  <initialval> 1.2 </initialval>
+ <dervname> dA2A </dervname>
   <errorlim> 0.005 </errorlim>
 </diffeq>
 
 <diffeq>
   <name> A2_m </name>
   <integralname> A2_m </integralname>
-  <initialval> -3.5 </initialval>
+  <initialval> -4.5 </initialval>
   <dervname> dA2m </dervname>
   <errorlim> 0.05 </errorlim>
 </diffeq>
@@ -64,7 +66,7 @@ By : University Of Mississippi Medical Center
 <diffeq>
   <name> A2_S </name>
   <integralname> A2_S </integralname>
-  <initialval> 1.75 </initialval>
+  <initialval> 1.15 </initialval>
   <dervname> dA2S </dervname>
   <errorlim> 0.05 </errorlim>
 </diffeq>
@@ -72,8 +74,16 @@ By : University Of Mississippi Medical Center
 <diffeq>
   <name> A2_B </name>
   <integralname> A2_B </integralname>
-  <initialval> 0.48 </initialval>
+  <initialval> 0.3 </initialval>
   <dervname> dA2B </dervname>
+  <errorlim> 0.005 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> A2_C </name>
+  <integralname> A2_C </integralname>
+  <initialval> -0.075 </initialval>
+  <dervname> dA2C </dervname>
   <errorlim> 0.005 </errorlim>
 </diffeq>
 
@@ -83,7 +93,7 @@ By : University Of Mississippi Medical Center
 <diffeq>
   <name> Symp_A </name>
   <integralname> Symp_A </integralname>
-  <initialval> 1.1 </initialval>
+  <initialval> 0.9 </initialval>
   <dervname> dSympA </dervname>
   <errorlim> 0.05 </errorlim>
 </diffeq>
@@ -99,7 +109,7 @@ By : University Of Mississippi Medical Center
 <diffeq>
   <name> Symp_S </name>
   <integralname> Symp_S </integralname>
-  <initialval> 1.85 </initialval>
+  <initialval> 1.7 </initialval>
   <dervname> dSympS </dervname>
   <errorlim> 0.05 </errorlim>
 </diffeq>
@@ -107,8 +117,16 @@ By : University Of Mississippi Medical Center
 <diffeq>
   <name> Symp_B </name>
   <integralname> Symp_B </integralname>
-  <initialval> 0.1 </initialval>
+  <initialval> 0.3 </initialval>
   <dervname> dSympB </dervname>
+  <errorlim> 0.005 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Symp_C </name>
+  <integralname> Symp_C </integralname>
+  <initialval> -0.05 </initialval>
+  <dervname> dSympC </dervname>
   <errorlim> 0.005 </errorlim>
 </diffeq>
 </equations>
@@ -157,31 +175,16 @@ By : University Of Mississippi Medical Center
 <def><name> dA2m </name><val> 0.05 * ( A2_mTarget - A2_m ) </val></def>
 <def><name> dA2S </name><val> 0.05 * ( A2_STarget - A2_S ) </val></def>
 <def><name> dA2B </name><val> 0.05 * ( A2_BTarget - A2_B ) </val></def>
+<def><name> dA2C </name><val> 0.05 * ( A2_CTarget - A2_C ) </val></def>
 
 <def><name> dSympA </name><val> 0.05 * ( Symp_ATarget - Symp_A ) </val></def>
 <def><name> dSympm </name><val> 0.05 * ( Symp_mTarget - Symp_m ) </val></def>
 <def><name> dSympS </name><val> 0.05 * ( Symp_STarget - Symp_S ) </val></def>
 <def><name> dSympB </name><val> 0.05 * ( Symp_BTarget - Symp_B ) </val></def>
+<def><name> dSympC </name><val> 0.05 * ( Symp_CTarget - Symp_C ) </val></def>
 
-
-
-
-
-
-
-
-<def><name> A2Effect </name><val> ( A2_A * ( A2Pool.Log10Conc ^ A2_m ) / ( ( A2Pool.Log10Conc ^ A2_m ) + ( A2_S ^ A2_m ) ) ) + A2_B  </val></def>
-
-<def><name> SympEffect </name><val> ( Symp_A * ( LeftKidney-AlphaReceptors.Activity ^ Symp_m ) / ( ( LeftKidney-AlphaReceptors.Activity ^ Symp_m ) + ( Symp_S ^ Symp_m ) ) ) + Symp_B  </val></def>
-
-
-<def><name> A2Effect </name><val> A2Effect [ A2Pool.Log10Conc ] </val></def>
-
-<def><name> SympEffect </name><val> SympEffect [ LeftKidney-AlphaReceptors.Activity ] </val></def>
-
-
-
-
+<def><name> A2Effect </name><val> ( A2_A * ( A2Pool.Log10Conc ^ A2_m ) / ( ( A2Pool.Log10Conc ^ A2_m ) + ( A2_S ^ A2_m ) ) ) + A2_B + ( A2_C *  A2Pool.Log10Conc ) </val></def>
+<def><name> SympEffect </name><val> ( Symp_A * ( LeftKidney-AlphaReceptors.Activity ^ Symp_m ) / ( ( LeftKidney-AlphaReceptors.Activity ^ Symp_m ) + ( Symp_S ^ Symp_m ) ) ) + Symp_B + ( Symp_C * LeftKidney-AlphaReceptors.Activity )  </val></def>
 
 <conditional><name> Conductance </name>
 <test> Clamp </test>
