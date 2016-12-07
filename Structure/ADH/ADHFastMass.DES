@@ -53,7 +53,6 @@ Schema : DES V1.0
 <definitions>
 <block><name> Flux </name>
 
-
 <def>
   <name> Flux </name>
   <val> FluxK * UndamagedMass </val>
@@ -72,7 +71,7 @@ Schema : DES V1.0
 
 <def>
   <name> DamagedChange </name>
-  <val> - Size-ADH.BaseK * MA1 * 100 * DamagedMass </val>
+  <val> - Size-ADH.BaseK * MA1 * 2.5 * DamagedMass </val>
 </def>
 
 <def>
