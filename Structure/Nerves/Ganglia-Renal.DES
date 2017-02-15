@@ -19,6 +19,7 @@ By : Tom Coleman
 <parm><name> Clamp-Left </name><val> FALSE </val></parm>
 <parm><name> Level-Left </name><val> 0.0 </val></parm>
 
+
 </variables>
 
 <definitions>

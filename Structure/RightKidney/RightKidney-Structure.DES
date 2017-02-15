@@ -28,6 +28,8 @@ Schema : DES V1.0
 <var><name> InterstitialLoss </name></var>
 <var><name> InterstitialLoss(L) </name></var>
 <var><name> IntracellularLoss </name></var>
+
+<parm><name> dummy </name><val> 0 </val></parm>
 </variables>
 
 <equations>
@@ -66,6 +68,16 @@ Schema : DES V1.0
 </functions>
 
 <definitions>
+
+
+<block><name> Parms </name>
+
+<onjustchanged><name> dummy </name>
+<call> Nephrectomize </call>
+</onjustchanged>
+
+</block>
+
 <block><name> Calc </name>
 
 <def>

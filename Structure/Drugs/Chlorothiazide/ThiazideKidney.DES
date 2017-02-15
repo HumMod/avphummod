@@ -17,7 +17,7 @@ Schema : DES V1.0
 
 <constant>
   <name> K </name>
-  <val> 0.016  </val>0.008
+  <val> 0.001  </val>0.008;0.016
 </constant>
 
 </variables>

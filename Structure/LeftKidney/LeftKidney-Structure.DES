@@ -23,6 +23,8 @@ Schema : DES V1.0
   <name> TemperatureEffect </name>
 </var>
 
+<parm><name> dummy </name><val> 0 </val></parm>
+
 <parm><name> Fraction </name><val> 0 </val></parm>
 <var><name> Remaining </name><val> 1 </val></var>
 <var><name> InterstitialLoss </name></var>
@@ -66,6 +68,15 @@ Schema : DES V1.0
 </functions>
 
 <definitions>
+
+<block><name> Parms </name>
+
+<onjustchanged><name> dummy </name>
+<call> Nephrectomize </call>
+</onjustchanged>
+
+</block>
+
 <block><name> Calc </name>
 
 <def>
@@ -113,25 +124,17 @@ Schema : DES V1.0
 <def><name> Torso_Middle_InterstitialProtein.AGPMass  </name><val> Torso_Middle_InterstitialProtein.AGPMass  - ( Torso_Middle_InterstitialProtein.[AGP] * InterstitialLoss ) </val></def>
 <def><name> Torso_Middle_InterstitialProtein.IgGMass  </name><val> Torso_Middle_InterstitialProtein.IgGMass  - ( Torso_Middle_InterstitialProtein.[IgG] * InterstitialLoss ) </val></def>
 
-
 <def><name> LeftKidney-Size.SolidMass </name><val> LeftKidney-Size.SolidMass * Remaining </val></def>
 <def><name> LeftKidney-Size.SolidVol </name><val> LeftKidney-Size.SolidVol * Remaining </val></def>
 <def><name> LeftKidney-NephronCount.Total </name><val> LeftKidney-NephronCount.Total * Remaining </val></def>
 <def><name> LeftMedulla.Volume </name><val> Remaining * LeftMedulla.Volume </val></def>
-
 
 <def><name> LeftReninSynthesis.Rate </name><val> LeftReninSynthesis.Rate * Remaining </val></def>
 <def><name> LeftReninFree.Mass </name><val> LeftReninFree.Mass * Remaining </val></def>
 <def><name> LeftReninGranules.Mass </name><val> LeftReninGranules.Mass * Remaining </val></def>
 <def><name> LeftKidney-Lactate.Mass </name><val> LeftKidney-Lactate.Mass * Remaining </val></def>
 <def><name> LeftKidney-CO2.Mass </name><val> LeftKidney-CO2.Mass * Remaining </val></def>
-
 <def><name> LeftKidney-ArcuateArtery.NominalConductance </name><val> LeftKidney-ArcuateArtery.Conductance(/G) * LeftKidney-Size.Mass * Remaining </val></def>
-<!--
-<def><name> LeftKidney-AfferentArtery.NominalConductance </name><val> LeftKidney-AfferentArtery.Conductance(/G) * LeftKidney-Size.Mass * Remaining </val></def>
-<def><name> LeftKidney-EfferentArtery.NominalConductance </name><val> LeftKidney-EfferentArtery.Conductance(/G) * LeftKidney-Size.Mass * Remaining </val></def>
--->
-
 <!-- electrolytes, extracellular-->
 <def><name> NaPool.Mass </name><val> NaPool.Mass - ( NaPool.[Na+] * InterstitialLoss ) </val></def>
 <def><name> KPool.Mass </name><val> KPool.Mass - ( KPool.[K+] * InterstitialLoss ) </val></def>
@@ -141,29 +144,21 @@ Schema : DES V1.0
 <def><name> ClPool.Mass </name><val> ClPool.Mass - ( ClPool.[Cl-] * InterstitialLoss ) </val></def>
 <def><name> LeftMedullaUrea.Mass </name><val> LeftMedullaUrea.Mass * Remaining </val></def>
 <def><name> LeftMedullaNa.Mass </name><val> LeftMedullaNa.Mass * Remaining </val></def>
-
-
 <!-- electrolytes, intracellular-->
 <def><name> KCell.Mass </name><val> KCell.Mass - ( KCell.[K+] * IntracellularLoss ) </val></def>
 <def><name> UreaCell.Mass </name><val> UreaCell.Mass - ( UreaCell.[Urea] * IntracellularLoss ) </val></def>
-
 <!-- metabolites -->
-
 <def><name> UreaPool.Mass </name><val> UreaPool.Mass - ( UreaPool.[Urea] * InterstitialLoss ) </val></def>
 <def><name> KAPool.Mass </name><val> KAPool.Mass - ( KAPool.[KA] * InterstitialLoss ) </val></def>
 <def><name> FAPool.Mass </name><val> FAPool.Mass - ( FAPool.[FA] * InterstitialLoss ) </val></def>
 <def><name> GlucosePool.Mass </name><val> GlucosePool.Mass - ( GlucosePool.[Glucose] * InterstitialLoss ) </val></def>
 <def><name> CreatininePool.Mass </name><val> CreatininePool.Mass - ( CreatininePool.[Creatinine] * InterstitialLoss ) </val></def>
-
 <!-- other osmolar players -->
 <def><name> OsmECFV.OtherCations </name><val> OsmECFV.OtherCations - ( OsmECFV.[OtherCations] * InterstitialLoss(L) ) </val></def>
 <def><name> OsmECFV.OtherAnions </name><val> OsmECFV.OtherAnions - ( OsmECFV.[OtherAnions] * InterstitialLoss(L) ) </val></def>
 <def><name> OsmCell.OtherCations </name><val> OsmCell.OtherCations - ( OsmCell.[OtherCations] * IntracellularLoss / 1000 ) </val></def>
 <def><name> OsmCell.OtherAnions </name><val> OsmCell.OtherAnions - ( OsmCell.[OtherAnions] * IntracellularLoss / 1000 ) </val></def>
-
-
 <!--circulating  hormones-->
-
 <def><name> ReninPool.Mass </name><val> ReninPool.Mass - ( ReninPool.[PRA] * InterstitialLoss * ReninPool.VOLDIST ) </val></def>
 <def><name> EPOPool.Mass </name><val> EPOPool.Mass - ( EPOPool.[EPO] * InterstitialLoss *  EPOPool.VolDist(FractionECFV)  ) </val></def>
 <def><name> ACTH.Mass </name><val> ACTH.Mass - ( ACTH.[Conc(nG/mL)] * InterstitialLoss ) </val></def>
@@ -176,8 +171,6 @@ Schema : DES V1.0
 <def><name> LeptinPool.Mass </name><val> LeptinPool.Mass - ( LeptinPool.[Leptin(nG/mL)] * InterstitialLoss(L) ) </val></def>
 <def><name> ADHPool.Mass </name><val> ADHPool.Mass - ( ADHPool.[ADH] * InterstitialLoss(L) ) </val></def>
 <def><name> AldoPool.Mass </name><val> AldoPool.Mass - ( AldoPool.[Aldo] * ( InterstitialLoss + IntracellularLoss ) ) </val></def>
-
-
 
 </block>
 

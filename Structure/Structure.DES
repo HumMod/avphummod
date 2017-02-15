@@ -203,6 +203,8 @@ By : University of Mississippi Medical Center
   <call> RightNephronAldo.Parms </call>
   <call> LeftNephronAldo.Parms </call>
 
+  <call> LeftKidney-Structure.Parms </call>
+  <call> RightKidney-Structure.Parms </call>
   <call> RightNephronADH.Parms </call>
   <call> LeftNephronADH.Parms </call>
 
