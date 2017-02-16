@@ -61,7 +61,9 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
-<def><name> Washup </name><val> CCK * [Urea] * RightVasaRecta.Outflow </val></def>
+<!-- <def><name> Washup </name><val> CCK * [Urea] * RightVasaRecta.Outflow </val></def> -->
+<def><name> Washup </name><val> 0.053 * [Urea] * ( RightCollectingDuct_H2O.Reab + RightLoopOfHenle_H2O.Reab ) </val></def>
+
 <def><name> Change </name><val> RightCollectingDuct_Urea.Reab - Washup </val></def>
 
 </block>

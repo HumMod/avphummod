@@ -25,7 +25,20 @@ By : University Of Mississippi Medical Center
 
 <var><name> PermEffect </name></var>
 
+<var><name> TargetV2 </name></var>
 </variables>
+
+<equations>
+
+<diffeq>
+  <name> V2 </name>
+  <integralname> V2 </integralname>
+  <initialval> 1 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 0.03 </errorlim>
+</diffeq>
+
+</equations>
 
 <functions>
 
@@ -68,8 +81,11 @@ By : University Of Mississippi Medical Center
   </val>
 </def>
 
+<def><name> TargetV2 </name><val> 0.125 + ( 10 / ( 10 + ADHPool.[ADH] ) ) </val></def>
+<def><name> Change </name><val> 0 * 0.0025 * ( TargetV2 - V2 ) </val></def>
+
 <def><name> ADHEffect </name><val> ( LeftCollectingDuct_H2O.ADH_A * ( ( RightNephronADH.[ADH] ^ LeftCollectingDuct_H2O.ADH_m ) / ( ( RightNephronADH.[ADH] ^ LeftCollectingDuct_H2O.ADH_m ) + ( LeftCollectingDuct_H2O.ADH_S ^ LeftCollectingDuct_H2O.ADH_m ) ) ) ) + LeftCollectingDuct_H2O.ADH_B  </val></def>
-<def><name> ADHEffect </name><val> ADHOnPerm [ RightNephronADH.[ADH] ]  </val></def>
+<def><name> ADHEffect </name><val> V2 * ADHOnPerm [ RightNephronADH.[ADH] ]  </val></def>
 
 <def><name> ModPerm </name><val> CollectingDuct_H2O.RightPerm </val></def>
 

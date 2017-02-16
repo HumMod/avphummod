@@ -36,12 +36,21 @@ By : University Of Mississippi Medical Center
 <parm><name> Perm_BTarget </name><val> 0 </val></parm>
 
 
+<var><name> TargetV2 </name></var>
 
 </variables>
 
 
 
 <equations>
+
+<diffeq>
+  <name> V2 </name>
+  <integralname> V2 </integralname>
+  <initialval> 1 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 0.03 </errorlim>
+</diffeq>
 
 <diffeq>
   <name> ADH_A </name>
@@ -165,9 +174,12 @@ By : University Of Mississippi Medical Center
 <def><name> dPermS </name><val> 0.05 * ( Perm_STarget - Perm_S ) </val></def>
 <def><name> dPermB </name><val> 0.05 * ( Perm_BTarget - Perm_B ) </val></def>
 
+<def><name> TargetV2 </name><val> .125 +  ( 10 / ( 10 + ADHPool.[ADH] ) ) </val></def>
+<def><name> Change </name><val> 0 * 0.0025 * ( TargetV2 - V2 ) </val></def>
+
 <def><name> ADHEffect </name><val> ( ADH_A * ( ( LeftNephronADH.[ADH] ^ ADH_m ) / ( ( LeftNephronADH.[ADH] ^ ADH_m ) + ( ADH_S ^ ADH_m ) ) ) ) + ADH_B  </val></def>
 
-<def><name> ADHEffect </name><val> ADHOnPerm [ LeftNephronADH.[ADH] ]  </val></def>
+<def><name> ADHEffect </name><val> V2 *  ADHOnPerm [ LeftNephronADH.[ADH] ]  </val></def>
 
 
 <conditional>

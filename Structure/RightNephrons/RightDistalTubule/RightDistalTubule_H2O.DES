@@ -84,7 +84,7 @@ Schema : DES V1.0
   <val> ADHA * ( RightNephronADH.[ADH]   ^ ADHN ) / ( ( ADHS ^ ADHN ) + ( RightNephronADH.[ADH]   ^ ADHN ) ) + ADHB  </val>
 </def>
 
-<def><name> ADHEffect </name><val> ADHOnPerm [ RightNephronADH.[ADH] ] </val></def>
+<def><name> ADHEffect </name><val> RightCollectingDuct_H2O.V2 * ADHOnPerm [ RightNephronADH.[ADH] ] </val></def>
 
 
 <conditional>
