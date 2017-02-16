@@ -9,7 +9,7 @@ By : University of Mississippi Medical Center
 <groupbox>
    <row> 2.0 </row>
    <col> 32.0 </col>
-   <high> 17.4 </high>
+   <high> 19.4 </high>
    <wide> 30.0 </wide>
    <title> H2O </title>
 
@@ -48,6 +48,12 @@ By : University of Mississippi Medical Center
   <map><val> 1 </val><img> Fixed Intake </img></map>
 </maplist>
 
+<maplist>
+  <name> Steady? </name>
+  <map><val> 0 </val><img> No match </img></map>
+  <map><val> 1 </val><img> Match urine flow </img></map>
+</maplist>
+
 <radiobuttons>
   <row> 9.8 </row><col> 1.0 </col>
   <name> Fixed? </name>
@@ -55,6 +61,13 @@ By : University of Mississippi Medical Center
   <nolabel/>
   <layout> VERT </layout>
 </radiobuttons>
+
+<slidebar>
+  <row> 12.2 </row><col> 1.0 </col>
+  <name> Steady? </name>
+  <listname> Steady? </listname>
+  <nolabel/>
+</slidebar>
 
 <structurename> DietGoalH2O </structurename>
 
@@ -64,7 +77,7 @@ By : University of Mississippi Medical Center
 </repeatlist>
 
 <slidebar>
-  <row> 12.2 </row><col> 1.0 </col>
+  <row> 13.6 </row><col> 1.0 </col>
   <name> Rate(L/Day) </name>
   <listname> Rate(L/Day) </listname>
   <label> Fixed Intake </label>
@@ -77,21 +90,21 @@ By : University of Mississippi Medical Center
 </repeatlist>
 
 <slidebar>
-  <row> 13.6 </row><col> 1.0 </col>
+  <row> 15.0 </row><col> 1.0 </col>
   <name> DegF </name>
   <listname> DegF </listname>
   <label> Temp (F) </label>
 </slidebar>
 
 <showvalue>
-  <row> 14.8 </row><col> 3.0 </col>
+  <row> 16.0 </row><col> 3.0 </col>
   <name> DegC </name>
   <format><decimal> 1 </decimal></format>
   <label> Temp (C) </label>
 </showvalue>
 
 <showvalue>
-  <row> 15.8 </row><col> 3.0 </col>
+  <row> 17. </row><col> 3.0 </col>
   <name> DegK </name>
   <format><decimal> 1 </decimal></format>
   <label> Temp (K) </label>

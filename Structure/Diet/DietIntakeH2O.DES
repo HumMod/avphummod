@@ -14,7 +14,8 @@ Schema : DES V1.0
 <var><name> Rate(L/Day) </name></var>
 <var><name> Rate(mL/Min) </name></var>
 <parm><name> Fixed? </name><val> FALSE </val></parm>
-
+<parm><name> Steady? </name><val> FALSE </val></parm>
+<var><name> FixRate </name></var>
 </variables>
 
 <definitions>
@@ -30,9 +31,16 @@ Schema : DES V1.0
 </if>
 
 <conditional>
+  <name> FixRate </name>
+  <test> Steady? </test>
+  <true> CollectingDuct_H2O.Outflow * 1.44 </true>
+  <false> DietGoalH2O.Rate(L/Day)  </false>
+</conditional>
+
+<conditional>
   <name> Rate(L/Day) </name>
   <test> Fixed? </test>
-  <true> DietGoalH2O.Rate(L/Day)  </true>
+  <true> FixRate </true>
   <false> DietThirst.Rate(L/Day) </false>
 </conditional>
 
