@@ -27,8 +27,8 @@ By : University of Mississippi Medical Center
   <leftmargin> 7 </leftmargin>
 
   <xaxis>
-    <name> OsmBody.Osmoreceptors(mOsm/L) </name>
-    <label> [Osm] </label>
+    <name> Delta </name>
+    <label> Delta [Osm] </label>
     <scale>
       <min> 230 </min><max> 320 </max><inc> 10 </inc>
     </scale>
